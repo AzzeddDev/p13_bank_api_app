@@ -1,12 +1,12 @@
 import Logo from "./../../assets/img/argentBankLogo.png"
 import {Link, useNavigate} from "react-router-dom"
 import {routes} from "../../router/routes.ts"
-import {useEffect, useState} from "react";
-import {useUserProfile} from "../../hooks/useUserProfile";
+import {useEffect, useState} from "react"
+import {useUserProfile} from "../../hooks/useUserProfile"
 
 export function Navbar() {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
-    const { userProfile, loading, error, updateProfile } = useUserProfile()
+    const { userProfile, loading } = useUserProfile()
     const navigate = useNavigate()
 
     useEffect(() => {
