@@ -9,6 +9,15 @@ body {
   flex: 1;
 }
 
+.pad-4 {
+  padding: 20px 0;
+}
+
+.isConnected {
+  display: flex;
+  gap: 16px;
+}
+
 .bg-dark {
   background-color: #12002b;
 }
@@ -46,6 +55,7 @@ body {
 .main-nav-item {
   text-decoration: none;
   margin-right: 0.5rem;
+  cursor: pointer;
 }
 
 .main-nav-item:hover {
