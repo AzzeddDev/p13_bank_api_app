@@ -1,12 +1,16 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import {loginUser} from "../../api/auth"
+import { useDispatch } from "react-redux"
+import { loginUser } from "../../api/auth"
+import {fetchUserProfile, setToken} from "../../redux/store/userSlice"
+import {routes} from "../../router/routes"
 
 export function SignIn() {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [error, setError] = useState("")
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
@@ -14,10 +18,14 @@ export function SignIn() {
 
         try {
             const data = await loginUser(email, password)
-            // token
-            localStorage.setItem("token", data.body.token)
-            navigate("/dashboard")
+            const token = data.body.token
 
+            dispatch(setToken(token))
+
+            // @ts-ignore
+            dispatch(fetchUserProfile())
+
+            navigate(routes.dashboard)
         } catch (err: any) {
             console.error("Login Error:", err.response?.data || err)
             setError("Invalid email or password")
