@@ -1,21 +1,20 @@
 import Logo from "./../../assets/img/argentBankLogo.png"
-import {Link, useNavigate} from "react-router-dom"
-import {routes} from "../../router/routes.ts"
-import {useEffect, useState} from "react"
-import {useUserProfile} from "../../hooks/useUserProfile"
+import { Link, useNavigate } from "react-router-dom"
+import { routes } from "../../router/routes.ts"
+import { useDispatch, useSelector } from "react-redux"
+import {RootState} from "../../redux/store"
+import {logout} from "../../redux/store/userSlice"
 
 export function Navbar() {
-    const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false)
-    const { userProfile, loading } = useUserProfile()
+    const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    useEffect(() => {
-        const token = localStorage.getItem("token")
-        setIsLoggedIn(!!token)
-    }, [])
+    const token = useSelector((state: RootState) => state.user.token)
+    const user = useSelector((state: RootState) => state.user.profile)
+    const loading = useSelector((state: RootState) => state.user.loading)
 
     const handleLogout = () => {
-        localStorage.removeItem("token")
+        dispatch(logout())
         navigate(routes.home)
     }
 
@@ -30,11 +29,11 @@ export function Navbar() {
                 <h1 className="sr-only">Argent Bank</h1>
             </Link>
             <div>
-                {isLoggedIn ? (
+                {token ? (
                     <div className={"isConnected"}>
                         <Link className="main-nav-item" to={routes.dashboard}>
                             <i className="fa fa-user-circle"></i>
-                            {loading ? "Loading..." : userProfile?.firstName || "User"}
+                            {loading ? "Loading..." : user?.firstName || "User"}
                         </Link>
                         <a className="main-nav-item" onClick={handleLogout}>
                             <i className="fa fa-sign-out"></i>
