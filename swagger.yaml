@@ -1,3 +1,7 @@
+######
+# add routes mentioned in course - transactions
+######
+
 swagger: '2.0'
 info:
   title: Bank Argent API documentation
