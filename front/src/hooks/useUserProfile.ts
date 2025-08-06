@@ -22,6 +22,7 @@ export function useUserProfile() {
                 setUserProfile(profile.body)
                 setLoading(false)
             } catch (error) {
+                // @ts-ignore
                 setError(error.message || "Error fetching profile data")
                 setLoading(false)
             }
@@ -40,6 +41,7 @@ export function useUserProfile() {
             const updatedProfile = await updateUserProfile(token, firstName, lastName)
             setUserProfile(updatedProfile.body)
         } catch (error) {
+            // @ts-ignore
             setError(error.message || "Error updating profile")
         }
     }
