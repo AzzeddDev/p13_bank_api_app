@@ -1,12 +1,22 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useSelector } from "react-redux"
+import {RootState} from "../../redux/store"
 
+// @ts-ignore
 export function ChangeNameModal({ onClose, onSave }) {
+    const profile = useSelector((state: RootState) => state.user.profile)
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
 
+    useEffect(() => {
+        if (profile) {
+            setFirstName(profile.firstName)
+            setLastName(profile.lastName)
+        }
+    }, [profile])
+
     const handleSave = () => {
         onSave({ firstName, lastName })
-        onClose()
     }
 
     return (
