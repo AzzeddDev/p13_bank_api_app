@@ -1,11 +1,4 @@
-######
-# add routes mentioned in course - transactions
-######
-
-## TODO: Route a rajouter : Get transactions mois en cours
-## TODO: Route a rajouter : id single transaction
-## TODO: Route a rajouter : Put to edit {id} transaction Infos // Cat - infos générales
-## TODO: faire attention au code du retour HTTP plusieurs
+## Swagger
 
 swagger: '2.0'
 info:
