@@ -20,26 +20,29 @@ export function ChangeNameModal({ onClose, onSave }) {
     }
 
     return (
-        <div className="modal">
-            <h2>Change Your Name</h2>
-            <label>
-                First Name:
-                <input
-                    type="text"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                />
-            </label>
-            <label>
-                Last Name:
-                <input
-                    type="text"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)}
-                />
-            </label>
-            <button onClick={handleSave}>Save</button>
-            <button onClick={onClose}>Cancel</button>
+        <div className="modalNameChange input-wrapper">
+            {/*<h2>Change Your Name</h2>*/}
+            <div className={"inputsGroup"}>
+                <label>
+                    <input
+                        type="text"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                    />
+                </label>
+                <label>
+                    <input
+                        type="text"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
+                </label>
+            </div>
+
+            <div className={"buttonGroup"}>
+                <button className={"edit-button"} onClick={handleSave}>Save</button>
+                <button className={"edit-button"} onClick={onClose}>Cancel</button>
+            </div>
         </div>
     )
 }
